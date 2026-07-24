@@ -8,7 +8,8 @@ version = "0.8.1"
 description = "Provider-neutral Agent Skills authoring and validation framework"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "Proprietary" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 dependencies = [
   "PyYAML>=6.0.2,<7",
 ]
@@ -18,9 +19,11 @@ polymind = "polymind.cli:main"
 
 [dependency-groups]
 dev = [
+  "jsonschema>=4.26,<5",
   "mypy>=2.3.0,<3",
   "pytest>=8.3,<10",
   "ruff>=0.16.0,<1",
+  "types-jsonschema>=4.26.0.20260518,<5",
   "types-PyYAML>=6.0.12",
 ]
 

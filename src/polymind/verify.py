@@ -91,6 +91,34 @@ def _check_skills_ref(root: Path) -> CheckResult:
     return CheckResult("skills-ref", "pass", f"validated {len(report.packages)} package(s)")
 
 
+def _check_actionlint(root: Path) -> CheckResult:
+    executable = shutil.which("actionlint")
+    if executable is None:
+        return CheckResult("actionlint", "skip", "optional pinned binary is not installed")
+    workflows_dir = root / ".github" / "workflows"
+    workflows = sorted(
+        path
+        for path in workflows_dir.glob("*")
+        if path.is_file() and path.suffix in {".yml", ".yaml"}
+    )
+    if not workflows:
+        return CheckResult("actionlint", "skip", "no workflow files under .github/workflows")
+    completed = subprocess.run(  # noqa: S603
+        [executable, *(str(path) for path in workflows)],
+        cwd=root,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode == 0:
+        return CheckResult("actionlint", "pass", f"{len(workflows)} workflow file(s)")
+    output = (completed.stdout + completed.stderr).strip().replace("\n", " ")
+    detail = f"exit {completed.returncode}"
+    if output:
+        detail += f": {output[:500]}"
+    return CheckResult("actionlint", "fail", detail)
+
+
 def _check_projection(root: Path) -> CheckResult:
     try:
         result = check_projection(root)
@@ -165,6 +193,7 @@ def run_verification(
         _run([sys.executable, "-m", "pytest"], root),
         _check_canonical(root),
         _check_docs(root),
+        _check_actionlint(root),
         _check_skills_ref(root),
         _check_projection(root),
         _check_conformance(root),

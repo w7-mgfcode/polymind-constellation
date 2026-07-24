@@ -75,3 +75,8 @@ The selected development priorities, automated release contract, and deferred
 registry design are documented in [development directions](docs/development-directions.md),
 [release automation](docs/release-automation.md), and the
 [Phase 9 registry plan](docs/phase9-registry.md).
+
+## License
+
+Polymind Constellation is licensed under the
+[Apache License 2.0](LICENSE).

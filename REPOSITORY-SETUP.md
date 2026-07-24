@@ -40,8 +40,10 @@ Observed Phase A facts:
 - `GET /repos/w7-mgfcode/polymind-constellation` returns HTTP 404, so the target
   repository does not currently exist.
 - `git status` reports `fatal: not a git repository`; `.git/` is empty.
-- Package metadata is `polymind-constellation` `0.8.1`, Python `>=3.11`, with
-  `license = { text = "Proprietary" }` and no root `LICENSE` file.
+- Phase A found package `polymind-constellation` `0.8.1`, Python `>=3.11`, with
+  legacy proprietary metadata and no root license file. On 2026-07-24, the
+  owner subsequently selected Apache-2.0 for the entire repository; the
+  current tree uses PEP 639 metadata and the canonical license text.
 - Existing workflows are `.github/workflows/ci.yml` and `release.yml`. Their
   third-party `uses:` references are pinned to 40-character SHAs. CI's required
   job/check context is `verify`. Release already uses least-scoped job
@@ -113,8 +115,9 @@ test -f .gitignore
 test -f .github/workflows/ci.yml
 test -f .github/workflows/release.yml
 test -f uv.lock
-test ! -e LICENSE
-rg -n '^license = \{ text = "Proprietary" \}$' pyproject.toml
+test -f LICENSE
+rg -n '^license = "Apache-2.0"$' pyproject.toml
+rg -n '^license-files = \["LICENSE"\]$' pyproject.toml
 if rg -n --pcre2 '^[[:space:]]*uses:[[:space:]]+[^ ]+@(?![0-9a-f]{40}([[:space:]]|$))' .github/workflows; then
   echo "un-pinned GitHub Action reference detected" >&2
   exit 1
@@ -126,7 +129,7 @@ scripts/verify
 Expected:
 
 - The empty-placeholder checks exit 0 and print nothing.
-- The license check prints the proprietary metadata line.
+- The license checks print the Apache-2.0 expression and license-file mapping.
 - The unpinned-action check prints nothing and exits 0.
 - Projection drift is absent and the full verification gate passes. The last
   recorded full gate was 123 passed and 1 intentional skip; the actual Phase B
@@ -152,10 +155,11 @@ Rationale and source:
 - Public visibility makes code, history, Actions logs, and forks broadly
   visible; inspect before the first push because later deletion does not erase
   copied data. See GitHub's [repository visibility guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility).
-- A public repository is not automatically open source. Without a license,
-  default copyright applies, although GitHub users may view and fork public
-  code under the Terms of Service. Preserve the declared `Proprietary` status
-  until the owner makes a deliberate legal choice. See [Licensing a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository).
+- A public repository is not automatically open source. The owner made the
+  explicit Apache-2.0 choice after bootstrap, so keep the canonical license,
+  PEP 639 package expression, and skill metadata aligned. Sources:
+  [Licensing a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
+  and [PyPA license metadata](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license-and-license-files).
 
 ### 2.2 Add governance files before the first commit
 
@@ -427,12 +431,11 @@ Policy notes:
   configuration](https://docs.github.com/en/code-security/concepts/supply-chain-security/about-the-dependabot-yml-file)
   and GitHub's [uv support announcement](https://github.blog/changelog/2025-03-13-dependabot-version-updates-now-support-uv-in-general-availability/).
 
-Licensing decision: do not add a `LICENSE` during this run. The project is
-explicitly proprietary, and choosing Apache-2.0, MIT, GPL, or another license is
-a legal/product decision outside an infrastructure setup. The GitHub community
-profile will therefore correctly show the license item as incomplete. If the
-owner chooses a license later, update `pyproject.toml`, add the exact license
-text, and review contribution terms together.
+Post-bootstrap licensing decision: on 2026-07-24 the owner explicitly selected
+Apache-2.0 for the entire repository. Preserve the canonical `LICENSE`, use the
+PEP 639 expression `license = "Apache-2.0"` with
+`license-files = ["LICENSE"]`, keep canonical skill and provenance metadata
+aligned, and regenerate projections after any metadata change.
 
 ## 3. Initialize Git and make the first commit
 
@@ -693,12 +696,22 @@ Rationale and source:
   trusted code and must be protected. Sources: [OIDC in PyPI](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-pypi)
   and [PyPI Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
 
-Recommended follow-up: integrate
-[`actionlint`](https://github.com/rhysd/actionlint) into `scripts/verify` and CI
-after selecting a version and verifying its release checksum. It detects
-workflow schema/expression errors and common script-injection mistakes. Do not
-add a floating action tag or unverified binary merely to satisfy this
-recommendation.
+Implemented hardening: CI runs `scripts/install-actionlint`, the single source
+of truth that installs `actionlint` 1.7.12 from its versioned Linux archive only
+after verifying SHA-256
+`8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`. Upgrading
+actionlint means editing the version and digest in that one script (and this
+line). `scripts/verify` runs it when installed and reports an explicit local
+skip when absent. This detects workflow schema/expression errors and common
+script-injection mistakes without trusting a floating action tag or expanding
+the repository Actions allowlist. Source:
+[`actionlint`](https://github.com/rhysd/actionlint/releases/tag/v1.7.12).
+
+Issue forms and chooser configuration are validated offline during pytest
+against exact Apache-2.0 SchemaStore blobs. Their Git blob IDs and SHA-256
+digests are recorded under `.github/schemas/README.md`; changing either schema
+requires an explicit pinned-source review. Source:
+[SchemaStore](https://github.com/SchemaStore/schemastore).
 
 ## 8. Security and quality controls
 
@@ -905,16 +918,17 @@ gh api \
 
 Expected:
 
-- Community profile reports README, CONTRIBUTING, SECURITY, issue template,
-  and pull request template URLs.
-- License remains absent by deliberate proprietary-policy decision, so do not
-  expect a 100% health score.
+- Community profile reports README, CONTRIBUTING, the Apache-2.0 license, and
+  pull request template URLs. Verify `SECURITY.md` through the contents API and
+  Security tab because the community-metrics response does not expose it.
+- GitHub may temporarily report `issue_template: null` for valid YAML issue
+  forms, which remain a public-preview feature. Verify the committed form paths,
+  run the pinned offline schema tests, and inspect `/issues/new/choose` while
+  authenticated before escalating a platform-recognition defect.
 - CODEOWNERS `errors` is empty.
 
-The community checklist also recommends a code of conduct and a license. Do not
-insert either boilerplate blindly: moderation/enforcement capacity must back a
-code of conduct, and a license must match the intended proprietary or
-open-source distribution model. Source: [Community profiles for public
+The community checklist also recommends a code of conduct. Do not insert one
+blindly: moderation and enforcement capacity must back it. Source: [Community profiles for public
 repositories](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories).
 
 ## 11. Releases and semantic version tags
@@ -1052,6 +1066,8 @@ Primary sources used for this runbook:
   [visibility](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility),
   [topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics),
   [licensing](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository),
+  [Apache License 2.0 text](https://www.apache.org/licenses/LICENSE-2.0.txt),
+  [PyPA license metadata](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license-and-license-files),
   [ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
 - Merge and branch policy: [About rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets),
   [available rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets),
@@ -1065,6 +1081,7 @@ Primary sources used for this runbook:
   [community profiles](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories),
   [issue and PR templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates),
   [issue form syntax](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms),
+  [SchemaStore issue schemas](https://github.com/SchemaStore/schemastore/tree/master/src/schemas/json),
   [security policy](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/add-security-policy),
   [private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configuring-private-vulnerability-reporting-for-a-repository)
 - Actions hardening: [Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use),
@@ -1073,7 +1090,9 @@ Primary sources used for this runbook:
   [OIDC in PyPI](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-pypi),
   [PyPI Trusted Publishers](https://docs.pypi.org/trusted-publishers/),
   [PyPI Trusted Publisher security model](https://docs.pypi.org/trusted-publishers/security-model/),
-  [actionlint](https://github.com/rhysd/actionlint)
+  [checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1),
+  [setup-python v7.0.0](https://github.com/actions/setup-python/releases/tag/v7.0.0),
+  [actionlint v1.7.12](https://github.com/rhysd/actionlint/releases/tag/v1.7.12)
 - Dependency security: [supply chain security](https://docs.github.com/en/code-security/concepts/supply-chain-security/supply-chain-security),
   [dependency graph](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-graph),
   [dependency graph ecosystems](https://docs.github.com/en/code-security/reference/supply-chain-security/dependency-graph-supported-package-ecosystems),

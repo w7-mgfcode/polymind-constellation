@@ -5,7 +5,7 @@ allowed_placeholders = []
 
 [provenance]
 source = "vendor:dynamous-community/.agents/skills/maintaining-agent-docs@owner-worktree-2026-07-22"
-license = "Proprietary; owner-authorized project use"
+license = "Apache-2.0"
 
 [capabilities]
 actions = ["filesystem.read", "filesystem.write", "shell.readonly", "network.read"]

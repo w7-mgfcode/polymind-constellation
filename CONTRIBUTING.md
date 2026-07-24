@@ -27,6 +27,12 @@ test the [installation contract](docs/installing.md) in a disposable repository.
 Only a version-tagged workflow may publish distributions; see the
 [release automation and provenance contract](docs/release-automation.md).
 
+## License
+
+The repository is licensed under the [Apache License 2.0](LICENSE). By
+submitting a contribution, you represent that you have the right to provide it
+under that license.
+
 ## Pull-request evidence
 
 - Explain the canonical behavior change and its semantic-version impact.

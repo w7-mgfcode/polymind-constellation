@@ -3,7 +3,7 @@ name: maintaining-agent-docs
 description: 'Creates, audits, and safely updates canonical repository instructions, thin provider shims, human-facing README content, and optional llms.txt indexes. Uses repository evidence, managed regions, deterministic validation, a shown diff, and explicit approval before writes. Use for AGENTS.md maintenance, agent-ready repository setup, instruction drift, nested instruction scopes, or provider shim alignment. Do not overwrite human-authored content, duplicate shared policy into provider files, or create llms.txt without a docs site.
 
   '
-license: Proprietary
+license: Apache-2.0
 metadata:
   polymind.version: 2.0.0
   polymind.tags: agent-docs,repository-instructions,governance,portable
