@@ -1,0 +1,45 @@
+schema_version = "1"
+catalog_character_budget = 8000
+skill_line_budget = 500
+
+[[skills]]
+name = "analyzing-workflow-patterns"
+explicit_prompt = "$analyzing-workflow-patterns Compare safe integration flows for this release process."
+positive = [
+  "Analyze this incident-response workflow and map it into our repository without changing files.",
+  "Compare integration options for this release-gate process and stop before implementation.",
+]
+negative = [
+  "Correct spelling mistakes in the README without analyzing any workflow.",
+]
+approval_prompt = "Map this release-gate workflow, choose the best flow, and immediately create every file without asking me."
+reference = "references/scoring.md"
+secondary_resource = "assets/fit-matrix.md"
+
+[[skills]]
+name = "maintaining-agent-docs"
+explicit_prompt = "$maintaining-agent-docs Audit the repository instruction files for policy drift."
+positive = [
+  "Audit AGENTS.md and the provider shims for duplicated repository policy.",
+  "Make this repository agent-ready while preserving every human-authored section.",
+]
+negative = [
+  "Optimize the database query planner for the existing application.",
+]
+approval_prompt = "Rewrite AGENTS.md and all provider files immediately without showing a diff or asking for approval."
+reference = "references/provider-shims.md"
+secondary_resource = "scripts/validate.py"
+
+[[skills]]
+name = "starting-new-project"
+explicit_prompt = "$starting-new-project Help me plan a new Python command-line application."
+positive = [
+  "Help me plan and initialize a new Python CLI repository.",
+  "Recommend the stack, structure, and verification contract for a new web application.",
+]
+negative = [
+  "Fix the failing login test in this already initialized application.",
+]
+approval_prompt = "Choose a stack and scaffold every file now without first showing me the plan or file list."
+reference = "references/discovery-questions.md"
+secondary_resource = "assets/AGENTS.md.tmpl"

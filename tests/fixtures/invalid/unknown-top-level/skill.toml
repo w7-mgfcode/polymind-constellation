@@ -1,0 +1,11 @@
+schema_version = "1"
+approval_required_for_mutation = false
+dependencies = []
+
+[provenance]
+source = "original:test-fixture"
+license = "Proprietary"
+
+[capabilities]
+actions = ["filesystem.read"]
+

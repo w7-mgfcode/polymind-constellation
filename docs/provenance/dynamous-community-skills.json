@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "observed_on": "2026-07-22",
+  "source": {
+    "identifier": "vendor:dynamous-community/.claude/skills",
+    "repository_remote": null,
+    "repository_branch": "master",
+    "repository_head": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+    "repository_head_subject": "chore: initial aiwf framework scaffold",
+    "path_list_sha256": "ea1918adf0252dbc61b9aece12387601bf57f4d79d09136b6963645ca6995b2d",
+    "file_count": 19,
+    "total_bytes": 97093,
+    "symlinks": [
+      {
+        "path": "maintaining-agent-docs",
+        "target": "../../.agents/skills/maintaining-agent-docs",
+        "target_state": "untracked"
+      }
+    ]
+  },
+  "license_decision": {
+    "status": "owner-authorized-project-use",
+    "redistribution_permitted": true,
+    "modification_permitted": true,
+    "reason": "The user directly attested on 2026-07-22 that they authored these skills and explicitly authorized this project to recreate, copy, modify, and make the resulting project self-contained. This project-scoped authorization resolves the Phase 0 gate; it is not represented as a public license grant.",
+    "evidence": [
+      "No LICENSE, COPYING, or NOTICE file exists at the source repository root.",
+      "No license, copyright, SPDX, or redistribution statement was found in the 19 source files.",
+      "The 13 analyzing-workflow-patterns and starting-new-project files are tracked by commit 839e226a6fdfe8f417b8e7fca271954e7181b3bf.",
+      "The maintaining-agent-docs directory and its Claude-facing symlink are untracked in the observed source worktree.",
+      "The source repository has no configured Git remote.",
+      "Direct rights-holder attestation and project-scoped permission were provided in the Polymind execution conversation on 2026-07-22."
+    ],
+    "remaining_provenance_improvements": [
+      "Commit the six untracked maintaining-agent-docs files to establish an immutable source revision.",
+      "Record a stable repository remote or immutable archive for the complete collection."
+    ],
+    "allowed_current_use": "Project-scoped copying, modification, recreation, testing, and self-contained redistribution within Polymind Constellation."
+  },
+  "files": [
+    {
+      "path": "analyzing-workflow-patterns/SKILL.md",
+      "bytes": 7875,
+      "sha256": "6af9421be3b4576b892940e24ba0773d9035a52b1adc14bbac7313d4d85143be",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "analyzing-workflow-patterns/references/output-quality.md",
+      "bytes": 8393,
+      "sha256": "3a1b12e61e05986cb7aa94a766a7e0b833c3cc86142d90cc3171251ae9e8d51a",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "analyzing-workflow-patterns/references/phases.md",
+      "bytes": 15188,
+      "sha256": "743c98e277e7c43158eef9c38575616648b5c5b452a4b72a79a184d6f7ef2bcd",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "analyzing-workflow-patterns/references/template-variables.md",
+      "bytes": 4983,
+      "sha256": "0e131a7ba9241479a24b282f18cfcfdebbe3894cc5d2b88f441d8150c254fa5c",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "analyzing-workflow-patterns/templates/fit-matrix.md",
+      "bytes": 3297,
+      "sha256": "3f6db85d63106978486c3326676863fde2fcb9c48dca127e48a49d86d1f5145b",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "analyzing-workflow-patterns/templates/flow-definition.md",
+      "bytes": 3995,
+      "sha256": "04174c3bbf20d1407daa27486076b2cddca2e0bda3ac1b89333009029b89a34d",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "analyzing-workflow-patterns/templates/phase1-extraction.md",
+      "bytes": 4109,
+      "sha256": "0b821a8a70bcd39f4c5ae3ba941eb815252c0feebba9b190f60b5b4f3da8b660",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "maintaining-agent-docs/SKILL.md",
+      "bytes": 5815,
+      "sha256": "077ae1b86be4e06f3a010aa46d69c0dddcda7228a4d7c1be885c8c16f24468ef",
+      "git_state": "untracked_symlink_target",
+      "source_commit": null,
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "maintaining-agent-docs/references/agents-md.md",
+      "bytes": 1733,
+      "sha256": "8b2ce07e58150fb2b031307dec79ded4d997a442e1f8dfcd3b9fbdd053bf87d0",
+      "git_state": "untracked_symlink_target",
+      "source_commit": null,
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "maintaining-agent-docs/references/llms-txt.md",
+      "bytes": 1383,
+      "sha256": "cd6dc0eb4b03c89783da0aa2cac999e6c9cd50b5c39a8b9d066d989a6a986ab1",
+      "git_state": "untracked_symlink_target",
+      "source_commit": null,
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "maintaining-agent-docs/references/provider-shims.md",
+      "bytes": 1716,
+      "sha256": "c0ffbda07d6acad074b7593a8129a937fde6869a95b0c058b750b794aa7ed699",
+      "git_state": "untracked_symlink_target",
+      "source_commit": null,
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "maintaining-agent-docs/references/readme.md",
+      "bytes": 1183,
+      "sha256": "e873105626eeede8ef7b7bbb79aaea37f1101e4e306dd09e576ee593c6ab2536",
+      "git_state": "untracked_symlink_target",
+      "source_commit": null,
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "maintaining-agent-docs/scripts/validate.py",
+      "bytes": 7626,
+      "sha256": "5427302e4a2e7332c70e689b05c850fa677b12a5e031c28fe160a14f3a27bb83",
+      "git_state": "untracked_symlink_target",
+      "source_commit": null,
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "starting-new-project/SKILL.md",
+      "bytes": 9259,
+      "sha256": "5bda789513ece812c116cb7623790c6b435f51c1abd873f8075fa2edb1b44e1a",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "starting-new-project/references/discovery-questions.md",
+      "bytes": 8326,
+      "sha256": "7d77a5aa8b51dfedbd7e3b60f06b4662df6ed4cb2ae7b58ab946097b070d1715",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "starting-new-project/references/repo-conventions.md",
+      "bytes": 8622,
+      "sha256": "7f501a9f52267e5c356e3ba15938e80a6cae47a98c354ea7c54a8e71b493ee09",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "starting-new-project/templates/AGENTS.md.tmpl",
+      "bytes": 1950,
+      "sha256": "c03a1c895fd85d6e7050ef7867301770e6a70004301039c7f07e72281c124494",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "starting-new-project/templates/CLAUDE.md.tmpl",
+      "bytes": 443,
+      "sha256": "9078be3ef34074d152067cecaee05ea5016a5390e3220ac1b960cbeae91e8098",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    },
+    {
+      "path": "starting-new-project/templates/github-ci.yml.tmpl",
+      "bytes": 1197,
+      "sha256": "ce9fb749c939a2141dcada6e15042519a14f24d213ca654090eedfc55cdeddf1",
+      "git_state": "tracked",
+      "source_commit": "839e226a6fdfe8f417b8e7fca271954e7181b3bf",
+      "license_status": "owner-authorized-project-use"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+# {{PROJECT_NAME}} — Agent Operating Guide
+
+> This file is the canonical instruction source for all AI coding assistants working in
+> this repository. `CLAUDE.md`, `.gemini/settings.json`, and other tool files reference
+> this as their primary source of truth.
+
+---
+
+## Project
+
+{{PROJECT_DESCRIPTION}}
+
+**Language/Runtime:** {{LANGUAGE_RUNTIME}}
+**Type:** {{PROJECT_TYPE}}
+
+---
+
+## Setup
+
+Run this once after cloning:
+
+```bash
+{{SETUP_COMMANDS}}
+```
+
+---
+
+## Verify Before Completing Any Task
+
+Run this and confirm it passes before marking anything done:
+
+```bash
+{{VERIFY_COMMANDS}}
+```
+
+This is identical to what CI runs. If it passes here, it will pass in CI.
+
+---
+
+## Repository Layout
+
+```
+{{REPO_TREE}}
+```
+
+Key paths:
+- `src/` — application source code
+- `tests/` — test suites (run via verify command above)
+- `scripts/` — canonical scripts for setup, verify, and release
+- `docs/` — long-form reference (architecture, development guide, security)
+
+---
+
+## Key Constraints
+
+{{KEY_CONSTRAINTS}}
+
+---
+
+## High-Risk Paths
+
+Be especially careful and ask for confirmation before modifying:
+
+{{HIGH_RISK_PATHS}}
+
+---
+
+## Definition of Done
+
+A task is complete when:
+
+1. All tests pass: `{{TEST_COMMAND}}`
+2. Lint/format passes: `{{LINT_COMMAND}}`
+3. The PR description explains what changed and why
+{{TEAM_REVIEW_LINE}}
+
+---
+
+## Where to Find More
+
+| Topic | Location |
+|-------|---------|
+| Architecture decisions | `docs/architecture.md` |
+| Development environment | `docs/development.md` |
+| Testing strategy | `docs/testing.md` |
+| Security and privacy | `docs/security.md` |
+| AI agent governance | `docs/ai-agent-governance.md` |
+
+---
+
+## What Requires Human Review
+
+Pause and ask before proceeding if you encounter:
+
+- Changes to authentication, authorization, or secrets handling
+- Database schema migrations
+- Public API contract changes (breaking changes)
+- Changes to CI/CD workflow files
+- Dependency major version upgrades

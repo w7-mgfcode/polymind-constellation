@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "source_manifest": "dynamous-community-skills.json",
+  "mapped_on": "2026-07-22",
+  "entries": [
+    {
+      "source_path": "analyzing-workflow-patterns/SKILL.md",
+      "target_path": "skills/analyzing-workflow-patterns/SKILL.md",
+      "transformation": "frontmatter normalized and template links renamed to assets"
+    },
+    {
+      "source_path": "analyzing-workflow-patterns/references/output-quality.md",
+      "target_path": "skills/analyzing-workflow-patterns/references/output-quality.md",
+      "transformation": "exact copy"
+    },
+    {
+      "source_path": "analyzing-workflow-patterns/references/phases.md",
+      "target_path": "skills/analyzing-workflow-patterns/references/phases.md",
+      "transformation": "template reference renamed to package-local assets path"
+    },
+    {
+      "source_path": "analyzing-workflow-patterns/references/template-variables.md",
+      "target_path": "skills/analyzing-workflow-patterns/references/template-variables.md",
+      "transformation": "exact copy"
+    },
+    {
+      "source_path": "analyzing-workflow-patterns/templates/fit-matrix.md",
+      "target_path": "skills/analyzing-workflow-patterns/assets/fit-matrix.md",
+      "transformation": "templates directory normalized to assets"
+    },
+    {
+      "source_path": "analyzing-workflow-patterns/templates/flow-definition.md",
+      "target_path": "skills/analyzing-workflow-patterns/assets/flow-definition.md",
+      "transformation": "templates directory normalized to assets"
+    },
+    {
+      "source_path": "analyzing-workflow-patterns/templates/phase1-extraction.md",
+      "target_path": "skills/analyzing-workflow-patterns/assets/phase1-extraction.md",
+      "transformation": "templates directory normalized to assets"
+    },
+    {
+      "source_path": "maintaining-agent-docs/SKILL.md",
+      "target_path": "skills/maintaining-agent-docs/SKILL.md",
+      "transformation": "symlink materialized, frontmatter normalized, and portable Phase 5 procedure applied"
+    },
+    {
+      "source_path": "maintaining-agent-docs/references/agents-md.md",
+      "target_path": "skills/maintaining-agent-docs/references/agents-md.md",
+      "transformation": "symlink target materialized as exact copy"
+    },
+    {
+      "source_path": "maintaining-agent-docs/references/llms-txt.md",
+      "target_path": "skills/maintaining-agent-docs/references/llms-txt.md",
+      "transformation": "symlink target materialized as exact copy"
+    },
+    {
+      "source_path": "maintaining-agent-docs/references/provider-shims.md",
+      "target_path": "skills/maintaining-agent-docs/references/provider-shims.md",
+      "transformation": "symlink target materialized, then provider facts refactored into selectable Phase 5 profiles"
+    },
+    {
+      "source_path": "maintaining-agent-docs/references/readme.md",
+      "target_path": "skills/maintaining-agent-docs/references/readme.md",
+      "transformation": "symlink target materialized as exact copy"
+    },
+    {
+      "source_path": "maintaining-agent-docs/scripts/validate.py",
+      "target_path": "skills/maintaining-agent-docs/scripts/validate.py",
+      "transformation": "symlink target materialized, then replaced by the Phase 5 deterministic safety validator"
+    },
+    {
+      "source_path": "starting-new-project/SKILL.md",
+      "target_path": "skills/starting-new-project/SKILL.md",
+      "transformation": "frontmatter normalized, template paths renamed to assets, and two-boundary Phase 5 workflow applied"
+    },
+    {
+      "source_path": "starting-new-project/references/discovery-questions.md",
+      "target_path": "skills/starting-new-project/references/discovery-questions.md",
+      "transformation": "Phase 5 adaptive discovery refactor preserving one-question and fast-exit behavior"
+    },
+    {
+      "source_path": "starting-new-project/references/repo-conventions.md",
+      "target_path": "skills/starting-new-project/references/repo-conventions.md",
+      "transformation": "exact copy"
+    },
+    {
+      "source_path": "starting-new-project/templates/AGENTS.md.tmpl",
+      "target_path": "skills/starting-new-project/assets/AGENTS.md.tmpl",
+      "transformation": "templates directory normalized to assets"
+    },
+    {
+      "source_path": "starting-new-project/templates/CLAUDE.md.tmpl",
+      "target_path": "skills/starting-new-project/assets/CLAUDE.md.tmpl",
+      "transformation": "templates directory normalized to assets"
+    },
+    {
+      "source_path": "starting-new-project/templates/github-ci.yml.tmpl",
+      "target_path": "skills/starting-new-project/assets/github-ci.yml.tmpl",
+      "transformation": "templates directory normalized to assets"
+    }
+  ]
+}

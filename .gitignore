@@ -1,0 +1,16 @@
+.venv/
+.env
+.env.*
+!.env.example
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+dist/*.whl
+dist/*.tar.gz
+dist/SHA256SUMS
+dist/RELEASE_NOTES.md
+dist/release-manifest.json
+dist/release-attestation.sigstore.json
+build/

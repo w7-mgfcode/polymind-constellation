@@ -1,0 +1,21 @@
+schema_version = "1"
+approval_required_for_mutation = false
+dependencies = []
+
+[provenance]
+source = "original:polymind-constellation"
+license = "Proprietary"
+
+[capabilities]
+actions = ["filesystem.read"]
+
+[triggers]
+positive = [
+  "Validate the canonical skills in this repository.",
+  "Check this Agent Skills package for broken references.",
+]
+negative = [
+  "Generate Claude and Codex projections.",
+  "Execute every script bundled with this skill.",
+]
+

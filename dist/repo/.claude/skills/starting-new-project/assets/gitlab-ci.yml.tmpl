@@ -1,0 +1,8 @@
+stages:
+  - verify
+
+verify:
+  stage: verify
+  image: {{CI_RUNNER}}
+  script:
+    - ./scripts/verify

@@ -1,0 +1,20 @@
+schema_version = "1"
+approval_required_for_mutation = false
+dependencies = []
+allowed_placeholders = []
+
+[provenance]
+source = "original:phase8-contributor-example"
+license = "Proprietary"
+
+[capabilities]
+actions = ["filesystem.read"]
+
+[triggers]
+positive = [
+  "Review these release notes for missing compatibility and rollback evidence.",
+  "Check whether this release record overclaims provider support.",
+]
+negative = [
+  "Publish this release and modify every changelog entry.",
+]

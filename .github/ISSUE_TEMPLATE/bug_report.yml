@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible defect in Polymind Constellation.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not report security vulnerabilities here. Use the private security link.
+  - type: input
+    id: version
+    attributes:
+      label: Polymind version or commit
+      placeholder: 0.8.1 or a full commit SHA
+    validations:
+      required: true
+  - type: dropdown
+    id: operation
+    attributes:
+      label: Operation
+      options:
+        - validate
+        - projection sync
+        - catalog or activation
+        - conformance
+        - downstream install
+        - release verification
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include commands, sanitized inputs, and the smallest reproducible case.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and diagnostics
+      description: Remove credentials, absolute source-machine paths, and private transcripts.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I searched for an existing issue and ran the applicable validation command.
+          required: true

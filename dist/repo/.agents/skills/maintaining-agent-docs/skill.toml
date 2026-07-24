@@ -1,0 +1,30 @@
+schema_version = "1"
+approval_required_for_mutation = true
+dependencies = []
+allowed_placeholders = []
+
+[provenance]
+source = "vendor:dynamous-community/.agents/skills/maintaining-agent-docs@owner-worktree-2026-07-22"
+license = "Proprietary; owner-authorized project use"
+
+[capabilities]
+actions = ["filesystem.read", "filesystem.write", "shell.readonly", "network.read"]
+
+[triggers]
+positive = [
+  "Audit and align AGENTS.md and a selected provider shim without duplicating policy.",
+  "Make this repository agent-ready while preserving human-written content.",
+]
+negative = [
+  "Generate llms.txt for a repository without a published documentation site.",
+  "Overwrite existing instruction files without showing a diff and getting approval.",
+]
+
+[[scripts]]
+path = "scripts/validate.py"
+runtime = "python>=3.11"
+dependencies = ["PyYAML>=6.0.2,<7"]
+inputs = "Repository root, optional SHA-256 secret allowlist files, and optional remote-link profile."
+outputs = "Deterministic redacted diagnostics, optional advisory diffs, and process exit status."
+side_effects = "None; validation is read-only. Optional remote checks issue bounded HTTP requests."
+dry_run = true

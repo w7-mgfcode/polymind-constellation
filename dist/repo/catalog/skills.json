@@ -1,0 +1,63 @@
+{
+  "execution": "none",
+  "operation": "catalog",
+  "schema_version": "1",
+  "skills": [
+    {
+      "capabilities": [
+        "filesystem.read",
+        "network.read",
+        "shell.readonly"
+      ],
+      "description": "Analyzes workflow documents, pasted text, URLs, or repository processes; extracts reusable entities, verbs, boundaries, gates, artifacts, failure paths, and variables; inspects actual repository capabilities; then compares three to five normalized, scored integration flows with validation and rollback before stopping for approval. Use to understand, map, compare, or integrate a workflow design. Do not modify files or external systems before the user selects a flow, and do not assume a language, tracker, provider, or fixed number of variants unless its optional profile is selected.\n",
+      "name": "analyzing-workflow-patterns",
+      "package_path": ".agents/skills/analyzing-workflow-patterns",
+      "risk": "read-only-until-approval",
+      "tags": [
+        "workflow-analysis",
+        "repository-planning",
+        "portable",
+        "decision-support"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "capabilities": [
+        "filesystem.read",
+        "filesystem.write",
+        "network.read",
+        "shell.readonly"
+      ],
+      "description": "Creates, audits, and safely updates canonical repository instructions, thin provider shims, human-facing README content, and optional llms.txt indexes. Uses repository evidence, managed regions, deterministic validation, a shown diff, and explicit approval before writes. Use for AGENTS.md maintenance, agent-ready repository setup, instruction drift, nested instruction scopes, or provider shim alignment. Do not overwrite human-authored content, duplicate shared policy into provider files, or create llms.txt without a docs site.\n",
+      "name": "maintaining-agent-docs",
+      "package_path": ".agents/skills/maintaining-agent-docs",
+      "risk": "writes-after-approval",
+      "tags": [
+        "agent-docs",
+        "repository-instructions",
+        "governance",
+        "portable"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "capabilities": [
+        "filesystem.read",
+        "filesystem.write",
+        "network.read",
+        "shell.execute"
+      ],
+      "description": "Plans and initializes a new software project through one-question-at-a-time discovery, current primary-source research, explicit recommendations and trade-offs, selected host and assistant profiles, an approved file manifest, and deterministic verification. Use for a new project, repository plan, scaffold, codebase initialization, or stack-selection request. Do not use to repair an established project, create unselected provider folders, or write files before the user approves both the plan and exact file list.\n",
+      "name": "starting-new-project",
+      "package_path": ".agents/skills/starting-new-project",
+      "risk": "writes-after-two-approvals",
+      "tags": [
+        "project-planning",
+        "repository-scaffolding",
+        "portable",
+        "governance"
+      ],
+      "version": "2.0.0"
+    }
+  ]
+}

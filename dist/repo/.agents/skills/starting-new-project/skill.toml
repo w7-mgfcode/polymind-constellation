@@ -1,0 +1,40 @@
+schema_version = "1"
+approval_required_for_mutation = true
+dependencies = []
+allowed_placeholders = [
+  "CI_RUNNER",
+  "HIGH_RISK_PATHS",
+  "INSTALL_COMMAND",
+  "KEY_CONSTRAINTS",
+  "LANGUAGE_RUNTIME",
+  "LANGUAGE_RUNTIME_LABEL",
+  "LINT_COMMAND",
+  "PLACEHOLDER",
+  "PROJECT_DESCRIPTION",
+  "PROJECT_NAME",
+  "PROJECT_TYPE",
+  "REPO_TREE",
+  "SETUP_ACTION",
+  "SETUP_ACTION_ARGS",
+  "SETUP_COMMANDS",
+  "TEAM_REVIEW_LINE",
+  "TEST_COMMAND",
+  "VERIFY_COMMANDS",
+]
+
+[provenance]
+source = "vendor:dynamous-community/.claude/skills/starting-new-project@839e226a6fdfe8f417b8e7fca271954e7181b3bf"
+license = "Proprietary; owner-authorized project use"
+
+[capabilities]
+actions = ["filesystem.read", "filesystem.write", "shell.execute", "network.read"]
+
+[triggers]
+positive = [
+  "Help me plan and initialize a new application repository.",
+  "What structure and tooling should this new project use?",
+]
+negative = [
+  "Fix a bug in this existing initialized application.",
+  "Write files before I approve the project plan and file list.",
+]

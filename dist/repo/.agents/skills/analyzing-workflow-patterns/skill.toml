@@ -1,0 +1,52 @@
+schema_version = "1"
+approval_required_for_mutation = true
+dependencies = []
+allowed_placeholders = [
+  "APPROVAL_GATES",
+  "BRANCH_NAMING",
+  "CLAUDE_RULES_PATHS",
+  "CLEAN_CANVAS",
+  "COMMIT_FORMAT",
+  "GH_OWNER",
+  "GH_PROJECT_ID",
+  "GH_REPO",
+  "GITHUB_WORKFLOW_PATHS",
+  "GRAPHQL_ROLLUP_QUERY",
+  "HANDOFF_FORMAT",
+  "ISSUE_SYSTEM",
+  "LABEL_TAXONOMY",
+  "OUTPUT_ARTIFACTS",
+  "PHASE_BOUNDARY_RULE",
+  "PRIMARY_GOAL",
+  "PROJECT_BOARD_SYSTEM",
+  "REPO_CONVENTIONS",
+  "REPO_NAME",
+  "ROLLBACK_STRATEGY",
+  "SOURCE_MATERIAL_NAME",
+  "SUB_ISSUES_ENDPOINT",
+  "TARGET_USER",
+  "VALIDATION_COMMANDS",
+  "VARIABLE",
+  "VARIABLE_NAME",
+  "VAR_1",
+  "VAR_2",
+  "WORKFLOW_NAME",
+  "WORKFLOW_TYPE",
+]
+
+[provenance]
+source = "vendor:dynamous-community/.claude/skills/analyzing-workflow-patterns@839e226a6fdfe8f417b8e7fca271954e7181b3bf"
+license = "Proprietary; owner-authorized project use"
+
+[capabilities]
+actions = ["filesystem.read", "shell.readonly", "network.read"]
+
+[triggers]
+positive = [
+  "Analyze this workflow and map it into our repository.",
+  "Explain this agent workflow in Hungarian and recommend integration options.",
+]
+negative = [
+  "Implement the selected workflow without first analyzing it.",
+  "Edit repository files before I choose an integration flow.",
+]

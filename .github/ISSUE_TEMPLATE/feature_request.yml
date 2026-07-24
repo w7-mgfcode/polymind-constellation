@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a bounded, provider-neutral improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Capability, permission, compatibility, and migration impact
+      description: State whether the proposal changes any approval or trust boundary.
+    validations:
+      required: true

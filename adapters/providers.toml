@@ -1,0 +1,58 @@
+schema_version = "1"
+verified_on = "2026-07-22"
+freshness_days = 90
+
+[[providers]]
+name = "codex"
+tested_version = "0.145.0"
+discovery_path = ".agents/skills"
+config_fields = []
+source_url = "https://developers.openai.com/codex/skills"
+support_status = "tested"
+smoke_test_id = "codex-debug-prompt-input"
+evidence_date = "2026-07-22"
+evidence_scope = "native-discovery"
+
+[[providers]]
+name = "claude-code"
+tested_version = "2.1.217"
+discovery_path = ".claude/skills"
+config_fields = ["CLAUDE.md:@AGENTS.md"]
+source_url = "https://code.claude.com/docs/en/slash-commands"
+support_status = "static-only"
+smoke_test_id = "claude-project-skill-path"
+evidence_date = "2026-07-22"
+evidence_scope = "projection-validation"
+
+[[providers]]
+name = "gemini-cli"
+tested_version = "0.51.0"
+discovery_path = ".agents/skills"
+config_fields = ["context.fileName"]
+source_url = "https://geminicli.com/docs/cli/using-agent-skills/"
+support_status = "tested"
+smoke_test_id = "gemini-workspace-skills-list"
+evidence_date = "2026-07-22"
+evidence_scope = "native-discovery"
+
+[[providers]]
+name = "opencode"
+tested_version = "not-installed"
+discovery_path = ".agents/skills"
+config_fields = ["provider.lmstudio", "permission.skill", "permission.external_directory"]
+source_url = "https://opencode.ai/docs/skills"
+support_status = "static-only"
+smoke_test_id = "pytest-opencode-local-model-opt-in"
+evidence_date = "2026-07-22"
+evidence_scope = "projection-and-config-validation"
+
+[[providers]]
+name = "ollama-raw-server"
+tested_version = "api-observed; server-version-unavailable"
+discovery_path = "none"
+config_fields = []
+source_url = "https://docs.ollama.com/api/chat"
+support_status = "unsupported"
+smoke_test_id = "phase7-structured-output-measurement"
+evidence_date = "2026-07-22"
+evidence_scope = "raw-model-server-has-no-agent-skill-discovery"
