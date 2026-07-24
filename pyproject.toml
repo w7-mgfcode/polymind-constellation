@@ -20,7 +20,7 @@ polymind = "polymind.cli:main"
 dev = [
   "mypy>=1.15,<2",
   "pytest>=8.3,<10",
-  "ruff>=0.11,<1",
+  "ruff>=0.16.0,<1",
   "types-PyYAML>=6.0.12",
 ]
 
