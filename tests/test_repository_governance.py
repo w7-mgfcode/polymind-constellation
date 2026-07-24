@@ -48,6 +48,22 @@ def _load_yaml(path: Path) -> Any:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
+def _issue_template_paths() -> list[Path]:
+    """All issue-template files (.yml and .yaml), deterministically sorted.
+
+    Fails closed: a missing or empty ISSUE_TEMPLATE directory raises here so the
+    parametrized test cannot pass silently by collecting zero cases.
+    """
+    directory = ROOT / ".github/ISSUE_TEMPLATE"
+    paths = sorted(
+        (path for path in directory.glob("*") if path.suffix in {".yml", ".yaml"}),
+        key=lambda path: path.name,
+    )
+    if not paths:
+        raise AssertionError(f"no issue templates found under {directory}")
+    return paths
+
+
 @pytest.mark.parametrize(("filename", "expected"), SCHEMA_DIGESTS.items())
 def test_vendored_schema_digest_and_metaschema(filename: str, expected: str) -> None:
     path = SCHEMA_ROOT / filename
@@ -55,15 +71,11 @@ def test_vendored_schema_digest_and_metaschema(filename: str, expected: str) -> 
     Draft7Validator.check_schema(_load_json(path))
 
 
-@pytest.mark.parametrize(
-    "path",
-    sorted((ROOT / ".github/ISSUE_TEMPLATE").glob("*.yml")),
-    ids=lambda path: path.name,
-)
+@pytest.mark.parametrize("path", _issue_template_paths(), ids=lambda path: path.name)
 def test_issue_templates_match_pinned_schemas(path: Path) -> None:
     schema_name = (
         "github-issue-config.schema.json"
-        if path.name == "config.yml"
+        if path.stem == "config"
         else "github-issue-forms.schema.json"
     )
     validator = Draft7Validator(_load_json(SCHEMA_ROOT / schema_name))
@@ -75,6 +87,8 @@ def test_issue_templates_match_pinned_schemas(path: Path) -> None:
 
 def test_project_license_metadata_is_apache_2() -> None:
     license_path = ROOT / "LICENSE"
+    # LICENSE_DIGEST pins the canonical Apache-2.0 text from
+    # https://www.apache.org/licenses/LICENSE-2.0.txt
     assert _sha256(license_path) == LICENSE_DIGEST
 
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]

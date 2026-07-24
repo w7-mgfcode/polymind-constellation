@@ -36,7 +36,8 @@
       "Commit the six untracked maintaining-agent-docs files to establish an immutable source revision.",
       "Record a stable repository remote or immutable archive for the complete collection."
     ],
-    "allowed_current_use": "Use, reproduction, modification, and distribution under the Apache License 2.0."
+    "allowed_current_use": "Use, reproduction, modification, and distribution under the Apache License 2.0.",
+    "files_license_status_meaning": "Each files[].license_status records the UPSTREAM provenance basis observed at the source on 2026-07-22 (the source carried no license; use was owner-authorized), not the outbound repository license. The outbound license for all of this content is license_decision.status (Apache-2.0); it is intentionally not duplicated per file."
   },
   "files": [
     {
