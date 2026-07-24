@@ -3,7 +3,7 @@ name: starting-new-project
 description: 'Plans and initializes a new software project through one-question-at-a-time discovery, current primary-source research, explicit recommendations and trade-offs, selected host and assistant profiles, an approved file manifest, and deterministic verification. Use for a new project, repository plan, scaffold, codebase initialization, or stack-selection request. Do not use to repair an established project, create unselected provider folders, or write files before the user approves both the plan and exact file list.
 
   '
-license: Proprietary
+license: Apache-2.0
 metadata:
   polymind.version: 2.0.0
   polymind.tags: project-planning,repository-scaffolding,portable,governance

@@ -8,7 +8,7 @@ description: >
   agent-ready repository setup, instruction drift, nested instruction scopes,
   or provider shim alignment. Do not overwrite human-authored content, duplicate
   shared policy into provider files, or create llms.txt without a docs site.
-license: Proprietary
+license: Apache-2.0
 metadata:
   polymind.version: "2.0.0"
   polymind.tags: "agent-docs,repository-instructions,governance,portable"

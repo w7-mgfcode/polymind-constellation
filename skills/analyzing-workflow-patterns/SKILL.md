@@ -9,7 +9,7 @@ description: >
   integrate a workflow design. Do not modify files or external systems before
   the user selects a flow, and do not assume a language, tracker, provider, or
   fixed number of variants unless its optional profile is selected.
-license: Proprietary
+license: Apache-2.0
 metadata:
   polymind.version: "2.0.0"
   polymind.tags: "workflow-analysis,repository-planning,portable,decision-support"

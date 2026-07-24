@@ -377,7 +377,7 @@ name: maintaining-agent-docs
 description: >-
   Create, audit, and reconcile repository agent documentation. Use when the
   user asks to manage AGENTS.md, CLAUDE.md, GEMINI.md, README.md, or llms.txt.
-license: Proprietary
+license: Apache-2.0
 compatibility: Requires filesystem read access; writes require explicit approval.
 metadata:
   polymind.version: "1.0.0"

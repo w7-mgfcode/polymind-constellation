@@ -4,6 +4,17 @@ All notable framework and canonical skill behavior changes are recorded here.
 The framework follows Semantic Versioning; skill behavior versions remain
 independent and are named explicitly.
 
+## Unreleased
+
+### Changed
+
+- Licensed the framework, canonical skills, generated projections, and package
+  distributions under Apache-2.0 with PEP 639 package metadata.
+- Updated checkout and Python setup actions to reviewed Node 24 releases pinned
+  by full commit SHA.
+- Added checksum-pinned actionlint execution and offline, digest-pinned schema
+  validation for GitHub issue forms and chooser configuration.
+
 ## 0.8.1 - 2026-07-23
 
 This hardening release was built and validated locally; it has not been

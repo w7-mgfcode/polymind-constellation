@@ -91,6 +91,15 @@ def _check_skills_ref(root: Path) -> CheckResult:
     return CheckResult("skills-ref", "pass", f"validated {len(report.packages)} package(s)")
 
 
+def _check_actionlint(root: Path) -> CheckResult:
+    executable = shutil.which("actionlint")
+    if executable is None:
+        return CheckResult("actionlint", "skip", "optional pinned binary is not installed")
+    completed = subprocess.run([executable], cwd=root, check=False)  # noqa: S603
+    status = "pass" if completed.returncode == 0 else "fail"
+    return CheckResult("actionlint", status, f"exit {completed.returncode}")
+
+
 def _check_projection(root: Path) -> CheckResult:
     try:
         result = check_projection(root)
@@ -165,6 +174,7 @@ def run_verification(
         _run([sys.executable, "-m", "pytest"], root),
         _check_canonical(root),
         _check_docs(root),
+        _check_actionlint(root),
         _check_skills_ref(root),
         _check_projection(root),
         _check_conformance(root),
