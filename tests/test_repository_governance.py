@@ -14,6 +14,14 @@ from polymind.validation import validate_repository
 
 ROOT = Path(__file__).parents[1]
 SCHEMA_ROOT = ROOT / ".github/schemas"
+
+# Pinned SHA-256 digests of vendored upstream artifacts. These intentionally
+# fail closed: any change to the bytes they cover must be a deliberate refresh,
+# not an accidental edit. To update one after a reviewed upstream/license change,
+# recompute with `sha256sum <file>` (or `_sha256(<file>)` below) and paste the
+# new hex digest here in the same commit as the file change.
+#   - SCHEMA_DIGESTS: the vendored SchemaStore issue-form/config JSON schemas.
+#   - LICENSE_DIGEST: the repository LICENSE text (Apache-2.0).
 SCHEMA_DIGESTS = {
     "github-issue-forms.schema.json": (
         "c2722dbf00334ce4fdeffa960b8c9047caf4f1cbb8f3809663f4d604b1d3ae76"
@@ -22,6 +30,12 @@ SCHEMA_DIGESTS = {
         "899e718f4b8c965413b07ec63d8f089792a10c42409270db560b9a7ec0224a5a"
     ),
 }
+LICENSE_DIGEST = "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+
+
+def _sha256(path: Path) -> str:
+    """Hex SHA-256 of a file; use to recompute a pinned digest above on refresh."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -37,7 +51,7 @@ def _load_yaml(path: Path) -> Any:
 @pytest.mark.parametrize(("filename", "expected"), SCHEMA_DIGESTS.items())
 def test_vendored_schema_digest_and_metaschema(filename: str, expected: str) -> None:
     path = SCHEMA_ROOT / filename
-    assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
+    assert _sha256(path) == expected
     Draft7Validator.check_schema(_load_json(path))
 
 
@@ -61,9 +75,7 @@ def test_issue_templates_match_pinned_schemas(path: Path) -> None:
 
 def test_project_license_metadata_is_apache_2() -> None:
     license_path = ROOT / "LICENSE"
-    assert hashlib.sha256(license_path.read_bytes()).hexdigest() == (
-        "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
-    )
+    assert _sha256(license_path) == LICENSE_DIGEST
 
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     assert project["license"] == "Apache-2.0"

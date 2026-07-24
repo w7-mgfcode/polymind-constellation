@@ -696,11 +696,13 @@ Rationale and source:
   trusted code and must be protected. Sources: [OIDC in PyPI](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-pypi)
   and [PyPI Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
 
-Implemented hardening: CI installs `actionlint` 1.7.12 from its versioned Linux
-archive only after verifying SHA-256
-`8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`.
-`scripts/verify` runs it when installed and reports an explicit local skip when
-absent. This detects workflow schema/expression errors and common
+Implemented hardening: CI runs `scripts/install-actionlint`, the single source
+of truth that installs `actionlint` 1.7.12 from its versioned Linux archive only
+after verifying SHA-256
+`8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`. Upgrading
+actionlint means editing the version and digest in that one script (and this
+line). `scripts/verify` runs it when installed and reports an explicit local
+skip when absent. This detects workflow schema/expression errors and common
 script-injection mistakes without trusting a floating action tag or expanding
 the repository Actions allowlist. Source:
 [`actionlint`](https://github.com/rhysd/actionlint/releases/tag/v1.7.12).

@@ -95,9 +95,16 @@ def _check_actionlint(root: Path) -> CheckResult:
     executable = shutil.which("actionlint")
     if executable is None:
         return CheckResult("actionlint", "skip", "optional pinned binary is not installed")
-    completed = subprocess.run([executable], cwd=root, check=False)  # noqa: S603
-    status = "pass" if completed.returncode == 0 else "fail"
-    return CheckResult("actionlint", status, f"exit {completed.returncode}")
+    completed = subprocess.run(  # noqa: S603
+        [executable], cwd=root, check=False, capture_output=True, text=True
+    )
+    if completed.returncode == 0:
+        return CheckResult("actionlint", "pass", "exit 0")
+    output = (completed.stdout + completed.stderr).strip().replace("\n", " ")
+    detail = f"exit {completed.returncode}"
+    if output:
+        detail += f": {output[:500]}"
+    return CheckResult("actionlint", "fail", detail)
 
 
 def _check_projection(root: Path) -> CheckResult:
